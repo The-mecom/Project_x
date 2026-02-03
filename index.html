@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Be My Valentine? 💌</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-hearts" aria-hidden="true"></div>
+
+  <main class="card" role="main">
+    <p class="tag">A tiny page for my favorite person</p>
+    <h1>Will you be my Valentine? 💘</h1>
+    <p class="sub">
+      I made this just for you. There’s only one correct answer… but I’ll pretend this is a democracy 😌
+    </p>
+
+    <div class="controls">
+      <button id="startBtn" class="btn secondary" type="button">▶ Start the music</button>
+      <span id="hint" class="hint">Tap once to allow audio (browser rule).</span>
+    </div>
+
+    <!-- OPTION A (recommended): Spotify embed -->
+    <!-- Replace the src with the track embed for "Yukon" -->
+    <section class="embed">
+      <p class="embed-title">If the music doesn’t play, hit play here:</p>
+      <iframe
+        id="spotifyEmbed"
+        style="border-radius: 14px"
+        src="https://open.spotify.com/embed/track/REPLACE_WITH_TRACK_ID?utm_source=generator"
+        width="100%"
+        height="152"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="Spotify player"
+      ></iframe>
+    </section>
+
+    <!-- OPTION B (only if you legally have the audio file): place yukon.mp3 in repo -->
+    <!--
+    <audio id="audio" preload="auto">
+      <source src="yukon.mp3" type="audio/mpeg" />
+    </audio>
+    -->
+
+    <div class="actions">
+      <button id="yesBtn" class="btn primary" type="button">YES 💖</button>
+      <button id="noBtn" class="btn danger" type="button">No 😶</button>
+    </div>
+
+    <div id="result" class="result" aria-live="polite"></div>
+
+    <footer class="footer">
+      <span>Made with love ❤️</span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
