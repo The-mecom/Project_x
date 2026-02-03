@@ -9,23 +9,86 @@
 <body>
   <div class="bg-hearts" aria-hidden="true"></div>
 
-  <main class="card" role="main">
+  <!-- Slideshow Container -->
+  <div id="slideshow" class="slideshow-wrapper">
+    <!-- Slide 1 -->
+    <div class="slide-card active" data-slide="0">
+      <div class="slide-content">
+        <div class="slide-number">1/5</div>
+        <h2 class="slide-title">Hey there! 👋</h2>
+        <p class="slide-text">I made something special for you...</p>
+        <p class="slide-subtext">Click anywhere to continue</p>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide-card" data-slide="1">
+      <div class="slide-content">
+        <div class="slide-number">2/5</div>
+        <h2 class="slide-title">You're Amazing 🌟</h2>
+        <p class="slide-text">Every moment with you is special</p>
+        <p class="slide-subtext">Click to continue</p>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide-card" data-slide="2">
+      <div class="slide-content">
+        <div class="slide-number">3/5</div>
+        <h2 class="slide-title">You Make Me Smile 😊</h2>
+        <p class="slide-text">Just thinking about you brightens my day</p>
+        <p class="slide-subtext">Click to continue</p>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide-card" data-slide="3">
+      <div class="slide-content">
+        <div class="slide-number">4/5</div>
+        <h2 class="slide-title">So... 💭</h2>
+        <p class="slide-text">There's something I've been wanting to ask you...</p>
+        <p class="slide-subtext">Click to see the question</p>
+      </div>
+    </div>
+
+    <!-- Slide 5 - Transition slide -->
+    <div class="slide-card" data-slide="4">
+      <div class="slide-content">
+        <div class="slide-number">5/5</div>
+        <h2 class="slide-title">Ready? 💝</h2>
+        <p class="slide-text">Here we go...</p>
+        <p class="slide-subtext">Click to reveal</p>
+      </div>
+    </div>
+
+    <!-- Progress indicators -->
+    <div class="slide-indicators">
+      <span class="indicator active" data-index="0"></span>
+      <span class="indicator" data-index="1"></span>
+      <span class="indicator" data-index="2"></span>
+      <span class="indicator" data-index="3"></span>
+      <span class="indicator" data-index="4"></span>
+    </div>
+  </div>
+
+  <!-- Main Valentine Card (hidden initially) -->
+  <main class="card" id="mainCard" role="main" style="display:none;">
     <p class="tag">A tiny page for my favorite person</p>
     <h1>Will you be my Valentine? 💘</h1>
     <p class="sub">
-      I made this just for you. There’s only one correct answer… but I’ll pretend this is a democracy 😌
+      I made this just for you. There's only one correct answer… but I'll pretend this is a democracy 😌
     </p>
 
-    <!-- Local MP3 player (hidden controls; started by button) -->
+    <!-- Local MP3 player (auto-starts when main card appears) -->
     <audio id="audio" preload="auto" loop>
       <source src="yukon.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
 
     <div class="controls">
-      <button id="startBtn" class="btn secondary" type="button">▶ Start the music</button>
+      <button id="startBtn" class="btn secondary" type="button" style="display:none;">▶ Start the music</button>
       <button id="pauseBtn" class="btn secondary" type="button" style="display:none;">⏸ Pause</button>
-      <span id="hint" class="hint">Tap to allow audio (browser rule).</span>
+      <span id="hint" class="hint">Music playing ✅</span>
     </div>
 
     <div class="actions">
@@ -43,4 +106,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
