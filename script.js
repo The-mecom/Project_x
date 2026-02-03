@@ -1,14 +1,14 @@
 const startBtn = document.getElementById("startBtn");
+const pauseBtn = document.getElementById("pauseBtn");
 const hint = document.getElementById("hint");
+
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const result = document.getElementById("result");
 
-// If you use OPTION B (local audio), uncomment these lines:
-// const audio = document.getElementById("audio");
+const audio = document.getElementById("audio");
 
 function confettiBurst() {
-  // lightweight, no-library confetti
   const count = 140;
   for (let i = 0; i < count; i++) {
     const piece = document.createElement("div");
@@ -45,21 +45,27 @@ function confettiBurst() {
   document.head.appendChild(style);
 })();
 
+// Start music (requires a user click)
 startBtn.addEventListener("click", async () => {
-  hint.textContent = "Music enabled ✅";
-
-  // OPTION A: Spotify embed can't be programmatically forced to play reliably.
-  // The click still helps the user; they can press play in the embed.
-
-  // OPTION B: Local audio (only if you legally have the file)
-  // try {
-  //   await audio.play();
-  //   hint.textContent = "Music playing ✅";
-  // } catch (e) {
-  //   hint.textContent = "Tap again — your browser blocked autoplay.";
-  // }
+  try {
+    audio.volume = 0.9;
+    await audio.play();
+    hint.textContent = "Music playing ✅";
+    startBtn.style.display = "none";
+    pauseBtn.style.display = "inline-block";
+  } catch (e) {
+    hint.textContent = "Your browser blocked it — tap again or check the MP3 file name.";
+  }
 });
 
+pauseBtn.addEventListener("click", () => {
+  audio.pause();
+  hint.textContent = "Paused ⏸";
+  pauseBtn.style.display = "none";
+  startBtn.style.display = "inline-block";
+});
+
+// Valentine buttons
 yesBtn.addEventListener("click", () => {
   confettiBurst();
   result.innerHTML = `
@@ -92,3 +98,4 @@ noBtn.addEventListener("click", () => {
   moveNoButton();
   result.textContent = "Nice try 😭";
 });
+
