@@ -80,33 +80,27 @@
   </div>
 
   <!-- Main Valentine Card -->
-  <main class="card" id="mainCard" role="main">
-    <h1>Will you be my Valentine? 💘</h1>
-    <p class="sub">
-      I made this just for you. There's only one correct answer… but I'll pretend this is a democracy 😌
-    </p>
+<main class="card" id="mainCard" role="main">
+  <h1>Will you be my Valentine? 💘</h1>
+  <p class="sub">
+    I made this just for you. There's only one correct answer… but I'll pretend this is a democracy 😌
+  </p>
 
-    <audio id="audio" preload="auto" loop>
-      <source src="yukon.mp3" type="audio/mpeg" />
-    </audio>
+  <audio id="audio" preload="auto" loop>
+    <source src="yukon.mp3" type="audio/mpeg" />
+  </audio>
 
-    <div class="controls">
-      <button id="startBtn" class="btn secondary" type="button">▶ Start the music</button>
-      <button id="pauseBtn" class="btn secondary" type="button" style="display:none;">⏸ Pause</button>
-      <span id="hint" class="hint"></span>
-    </div>
+  <div class="actions">
+    <button id="yesBtn" class="btn primary" type="button">YES 💖</button>
+    <button id="noBtn" class="btn danger" type="button">No 😶</button>
+  </div>
 
-    <div class="actions">
-      <button id="yesBtn" class="btn primary" type="button">YES 💖</button>
-      <button id="noBtn" class="btn danger" type="button">No 😶</button>
-    </div>
+  <div id="result" class="result" aria-live="polite"></div>
 
-    <div id="result" class="result" aria-live="polite"></div>
-
-    <footer class="footer">
-      <span>By Moses with love ❤️</span>
-    </footer>
-  </main>
+  <footer class="footer">
+    <span>By Moses with love ❤️</span>
+  </footer>
+</main>
 
   <script src="script.js"></script>
 </body>
