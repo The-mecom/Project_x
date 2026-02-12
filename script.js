@@ -64,20 +64,37 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Make overlay click ONLY start (and not pass through)
-  beginBtn.addEventListener("click", async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+ document.body.classList.add("overlay-open");
 
-    await startMusic();
-    startOverlay.style.display = "none";
-    showSlide(0);
-  });
+const startOverlay = document.getElementById("startOverlay");
+const beginBtn = document.getElementById("beginBtn");
 
-  // Stop overlay area clicks from reaching slideshow
-  startOverlay.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
+async function handleBegin(e){
+  e.preventDefault();
+  e.stopPropagation();
 
+  // Try start audio (this user gesture allows play on mobile)
+  try {
+    audio.volume = 0.7;
+    await audio.play();
+    hint.textContent = "Music playing ✅";
+  } catch (err) {
+    hint.textContent = "Tap again (browser blocked it)";
+  }
+
+  // Close overlay + allow interactions
+  document.body.classList.remove("overlay-open");
+  startOverlay.style.display = "none";
+}
+
+// Use pointerup for best mobile support
+beginBtn.addEventListener("pointerup", handleBegin);
+beginBtn.addEventListener("click", handleBegin); // fallback
+
+// Stop overlay clicks from leaking to slideshow
+startOverlay.addEventListener("click", (e) => e.stopPropagation());
+
+ 
   // Slideshow click to advance
   slideshow.addEventListener("click", nextSlide);
 
