@@ -43,27 +43,30 @@ body{
   to  { transform: translate3d(1%, 1%, 0) scale(1.02); }
 }
 
-/* Overlay */
+/* Overlay - MUST be on top */
 .overlay{
   position: fixed;
   inset: 0;
-  z-index: 99999;
+  z-index: 999999;
   display: grid;
   place-items: center;
-  background: rgba(0,0,0,0.65);
+  background: rgba(0,0,0,0.75);
   backdrop-filter: blur(10px);
-  pointer-events: auto;
 }
 
 .overlay-card{
   width: min(520px, 92vw);
-  padding: 22px;
+  padding: 32px;
   border-radius: 24px;
   border: 1px solid var(--stroke);
   background: linear-gradient(180deg, var(--card), #0f0f1fcc);
   box-shadow: 0 20px 70px #00000066;
   text-align: center;
-  pointer-events: auto;
+}
+
+.overlay-card h2{
+  margin: 0 0 24px;
+  font-size: 32px;
 }
 
 .slideshow-wrapper{
@@ -224,7 +227,8 @@ h1{
 .btn{
   border:none;
   border-radius: 16px;
-  padding: 12px 16px;
+  padding: 14px 28px;
+  font-size: 16px;
   font-weight: 700;
   cursor:pointer;
   transition: transform .12s ease, filter .12s ease;
@@ -232,11 +236,11 @@ h1{
 }
 
 .btn:hover{ transform: translateY(-2px); filter: brightness(1.05); }
-.btn:active{ transform: translateY(0px) scale(0.99); }
+.btn:active{ transform: translateY(0px) scale(0.98); }
 
 .primary{
   background: linear-gradient(135deg, var(--primary), var(--primary2));
-  color:#16010a;
+  color:#fff;
 }
 
 .secondary{
@@ -285,47 +289,6 @@ h1{
 
 @media (max-width:640px){
   .slide-card{ padding:60px 24px; min-height:350px; }
-
-
-  /* ===== Start overlay - force clickable on top ===== */
-#startOverlay{
-  position: fixed;
-  inset: 0;
-  z-index: 999999;        /* must be higher than everything */
-  display: grid;
-  place-items: center;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(10px);
-  pointer-events: auto;
-}
-
-#startOverlay .overlay-card{
-  width: min(560px, 92vw);
-  padding: 22px;
-  border-radius: 24px;
-  border: 1px solid var(--stroke);
-  background: linear-gradient(180deg, var(--card), #0f0f1fcc);
-  box-shadow: 0 20px 70px #00000066;
-  text-align: center;
-  pointer-events: auto;
-}
-
-/* Button must always receive taps/clicks */
-#beginBtn{
-  pointer-events: auto;
-  position: relative;
-  z-index: 1000000;
-}
-
-/* While overlay is open, disable clicks on the page behind it */
-body.overlay-open #slideshow,
-body.overlay-open #mainCard,
-body.overlay-open .bg-hearts{
-  pointer-events: none;
-}
-
   .indicator{ width:30px; }
   .indicator.active{ width:45px; }
 }
-
-#beginBtn { pointer-events: auto; }
