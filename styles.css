@@ -288,3 +288,5 @@ h1{
   .indicator{ width:30px; }
   .indicator.active{ width:45px; }
 }
+
+#beginBtn { pointer-events: auto; }
