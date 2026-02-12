@@ -72,7 +72,7 @@ body{
 }
 
 .overlay.hidden{
-  display: none;
+  display: none !important;
 }
 
 .overlay-card{
@@ -100,7 +100,7 @@ body{
 }
 
 .slideshow-wrapper.hidden{
-  display: none;
+  display: none !important;
 }
 
 .slide-card{
@@ -215,7 +215,7 @@ body{
   width: 50px;
 }
 
-/* Main Valentine Card */
+/* Main Valentine Card - MUST BE COMPLETELY HIDDEN INITIALLY */
 .card{
   width: min(700px, 100%);
   max-width: 700px;
@@ -225,12 +225,14 @@ body{
   background: linear-gradient(180deg, var(--card), #0f0f1fcc);
   box-shadow: 0 20px 70px #00000066;
   backdrop-filter: blur(10px);
-  position: relative;
+  position: absolute;
   z-index: 10;
+  display: none;
 }
 
-.card.hidden{
-  display: none;
+.card.show{
+  display: block !important;
+  position: relative;
 }
 
 .tag{
