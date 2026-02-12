@@ -24,10 +24,11 @@ window.addEventListener('load', function() {
   const totalSlides = slides.length;
   
   console.log(`Found ${totalSlides} slides`);
+  console.log("Audio element:", audio);
   
-  // Initialize - Hide slideshow and main card
+  // Initialize - Make sure everything is in the right state
   slideshow.classList.add('hidden');
-  mainCard.classList.add('hidden');
+  mainCard.style.display = 'none'; // Use inline style for absolute certainty
   
   // Apply background images
   slides.forEach((slide, index) => {
@@ -38,10 +39,11 @@ window.addEventListener('load', function() {
     }
   });
   
-  // ===== BEGIN BUTTON =====
+  // ===== BEGIN BUTTON WITH MUSIC =====
   if (beginBtn) {
     beginBtn.onclick = function(e) {
       e.preventDefault();
+      e.stopPropagation();
       console.log("🎬 Begin button clicked!");
       
       // Hide overlay
@@ -50,24 +52,37 @@ window.addEventListener('load', function() {
       // Show slideshow
       slideshow.classList.remove('hidden');
       
-      // Try to play audio
+      // CRITICAL: Start music immediately with user interaction
       if (audio) {
+        console.log("🎵 Attempting to start audio...");
+        
+        // Set volume first
         audio.volume = 0.7;
-        audio.play()
-          .then(() => {
-            console.log("🎵 Audio started playing");
-            musicPlaying = true;
-            hint.textContent = "Music playing ✅";
-            if (startBtn) startBtn.style.display = "none";
-            if (pauseBtn) pauseBtn.style.display = "inline-block";
-          })
-          .catch(err => {
-            console.log("⚠️ Audio autoplay blocked:", err.message);
-            hint.textContent = "Click Play to start music";
-            if (startBtn) startBtn.style.display = "inline-block";
-          });
+        
+        // Try to play
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log("✅ Audio started successfully!");
+              musicPlaying = true;
+              if (hint) hint.textContent = "Music playing ✅";
+              if (startBtn) startBtn.style.display = "none";
+              if (pauseBtn) pauseBtn.style.display = "inline-block";
+            })
+            .catch(error => {
+              console.error("❌ Audio play failed:", error);
+              if (hint) hint.textContent = "Click Play to start music";
+              if (startBtn) startBtn.style.display = "inline-block";
+            });
+        }
+      } else {
+        console.error("❌ Audio element not found!");
       }
     };
+  } else {
+    console.error("❌ Begin button not found!");
   }
   
   // ===== SLIDESHOW FUNCTIONS =====
@@ -102,7 +117,8 @@ window.addEventListener('load', function() {
       // End of slideshow - show main card
       console.log("📝 Showing main Valentine card");
       slideshow.classList.add('hidden');
-      mainCard.classList.remove('hidden');
+      mainCard.classList.add('show');
+      mainCard.style.display = 'block';
     }
   }
   
@@ -128,15 +144,17 @@ window.addEventListener('load', function() {
     startBtn.onclick = function() {
       console.log("▶️ Play button clicked");
       if (audio) {
+        audio.volume = 0.7;
         audio.play()
           .then(() => {
+            console.log("✅ Music started");
             musicPlaying = true;
             hint.textContent = "Music playing ✅";
             startBtn.style.display = "none";
             if (pauseBtn) pauseBtn.style.display = "inline-block";
           })
           .catch(err => {
-            console.log("Error playing audio:", err);
+            console.error("❌ Error playing audio:", err);
             hint.textContent = "Error playing music";
           });
       }
@@ -263,4 +281,5 @@ window.addEventListener('load', function() {
   // ===== INITIALIZE =====
   showSlide(0);
   console.log("✅ All event listeners attached");
+  console.log("📍 Audio src:", audio ? audio.src : "Audio not found");
 });
