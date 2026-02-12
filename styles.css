@@ -373,3 +373,25 @@ h1{
     padding: 28px 20px;
   }
 }
+
+/* Update the actions div to center the buttons */
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  justify-content: center; /* This centers the Yes and No buttons */
+}
+
+/* Ensure the result text is also centered */
+.result {
+  margin-top: 20px;
+  min-height: 50px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px dashed var(--stroke);
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centering the response text */
+  text-align: center;
+}
